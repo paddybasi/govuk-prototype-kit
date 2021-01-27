@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirmation page example
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">Crime Search Results</h1>
+        <div class="govuk-panel__body">
+          Your Neighbourhood Team<br><strong>{{ neighbourHood }}</strong>
+        </div>
+      </div>
+
+      {{ data | dump | safe }}
+
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {{ govukTable({
+      caption: "Crimes",
+      firstCellIsHeader: true,
+      head: [
+      {
+      text: "Reported Crime"
+      },
+      {
+      text: "Outcome"
+      }
+      ],
+      rows: crimes
+      }) }}
+
+      <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this service?</a> (takes 30 seconds)</p>
+
+
+    </div>
+  </div>
+
+{% endblock %}
